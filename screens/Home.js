@@ -33,13 +33,12 @@ const [nome, setNome] = useState('');
   const iniciarJogo = (nomeDigitado) => {
     if(nomeDigitado && nomeDigitado.trim() !== ''){
         setNome(nomeDigitado.trim());
-        navigation.navigate('Decisoes');
+        navigation.navigate('TelaDecisoes', { nome: nome });
     }else{
         console.log('Nome inválido, disparando alert');
         Alert.alert('Preencha o campo acima!');
     }
   }
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -70,7 +69,7 @@ const [nome, setNome] = useState('');
         style={styles.input}
       /> 
   
-      <TouchableOpacity onPress={() => iniciarJogo(nome)}>
+      <TouchableOpacity onPress={() => iniciarJogo(nome)} style={styles.botao}>
       <Text style={styles.botaoTexto}>Jogar</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -89,9 +88,20 @@ const styles = StyleSheet.create({
     padding: 10, 
     marginBottom: 20 
   },
-    botaoTexto: {
-      color: '#fff',
-      fontSize: 16,
-      textAlign: 'center',
-    },
+  botao: {
+    backgroundColor: '#4CAF50', // Verde
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    elevation: 3, // sombra Android
+    shadowColor: '#000', // sombra iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+  },
+  textoBotao: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
